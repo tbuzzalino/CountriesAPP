@@ -7,11 +7,13 @@ import {
     population,
     populationLower,
     getRegions,
+    getAllCountries,
 } from "../../redux/actions/actions";
 import { useDispatch } from "react-redux";
 
 const Nav = () => {
     const dispatch = useDispatch();
+    const handleClickOriginal = (e) => dispatch(getAllCountries());
     const handleClick = (e) => dispatch(sort());
     const handleClickZ = (e) => dispatch(sortZA());
     const handleClickPopulation = (e) => dispatch(population());
@@ -22,7 +24,9 @@ const Nav = () => {
             <div className="Menu">Countries App</div>
             <Search />
             <select className="sort" placeholder="A-Z">
-                <option>Order Alphabetical</option>
+                <option onClick={(e) => handleClickOriginal(e)}>
+                    Order Alphabetical
+                </option>
                 <option onClick={(e) => handleClick(e)}>A-Z</option>
                 <option onClick={(e) => handleClickZ(e)}>Z-A</option>
                 <option onClick={(e) => handleClickPopulation(e)}>

@@ -10,7 +10,6 @@ export const StyledDiv = styled.div`
         flex-direction: column;
         width: 450px;
         height: 300px;
-        /* border : 2px solid black; */
         justify-content: center;
         border-radius: 5px;
         text-align: center;
@@ -22,6 +21,7 @@ export const StyledDiv = styled.div`
             width: 250px;
             height: 150px;
             margin: auto;
+            text-align: center;
         }
     }
 `;
