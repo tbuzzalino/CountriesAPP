@@ -25,7 +25,7 @@ const Nav = () => {
             <Search />
             <select className="sort" placeholder="A-Z">
                 <option onClick={(e) => handleClickOriginal(e)}>
-                    Order Alphabetical
+                    Order alphabetically
                 </option>
                 <option onClick={(e) => handleClick(e)}>A-Z</option>
                 <option onClick={(e) => handleClickZ(e)}>Z-A</option>

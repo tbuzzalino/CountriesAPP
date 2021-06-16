@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { StyledDiv } from "./styled";
 
-export const CountriesDetails = ({ index }) => {
+const CountriesDetails = ({ index }) => {
     const dispatch = useDispatch();
     const idCountry = useParams();
     const countriesId = useSelector((state) => state.countriesId);
@@ -43,3 +43,5 @@ export const CountriesDetails = ({ index }) => {
         </StyledDiv>
     );
 };
+
+export default CountriesDetails;

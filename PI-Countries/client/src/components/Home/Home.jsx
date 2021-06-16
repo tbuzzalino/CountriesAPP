@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCountries } from "../../redux/actions/actions";
-import { Card } from "./Card";
+import Card from "./Card";
 import { StyledDiv } from "./styled";
 
-export default function Home() {
+const Home = () => {
     const dispatch = useDispatch();
     const countries = useSelector((state) => state.countries);
     const regionc = useSelector((state) => state.region);
@@ -27,4 +27,6 @@ export default function Home() {
                   })}
         </StyledDiv>
     );
-}
+};
+
+export default Home;

@@ -36,9 +36,7 @@ const Search = () => {
                     onChange={(e) => handleChange(e)}
                 />
 
-                <button type="submit" className="button">
-                    Search
-                </button>
+                {/* <button type="submit" className="button"></button> */}
             </form>
         </div>
     );

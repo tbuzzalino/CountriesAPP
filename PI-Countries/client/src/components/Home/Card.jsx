@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-export const Card = ({ country, index }) => {
+
+const Card = ({ country, index }) => {
     const history = useHistory();
 
     return (
@@ -20,3 +21,5 @@ export const Card = ({ country, index }) => {
         </div>
     );
 };
+
+export default Card;
