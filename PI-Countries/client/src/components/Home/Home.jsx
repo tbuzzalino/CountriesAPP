@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCountries } from "../../redux/actions/actions";
-import Card from "./Card";
+import Card from "../Card/Card";
 import { StyledDiv } from "./styled";
 
 const Home = () => {
