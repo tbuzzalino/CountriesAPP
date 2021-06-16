@@ -1,21 +1,19 @@
-const express = require("express");
-// const server = express();
 const { Router } = require("express");
 const router = Router();
 const { Activity, Country } = require("../db");
 
 router.post("/", async (req, res) => {
-    let { name, difficulty, duration, season, ic } = req.body;
+    let { name, difficulty, duration, season, idCountry } = req.body;
     let newActivity = await Activity.create({
         name: name,
         difficulty: difficulty,
         duration: duration,
         season: season,
     });
-    console.log(ic);
+
     // console.log(newActivity)
     // Esto me agrega a la tabla intermedia
-    ic.forEach(async (pais) => {
+    idCountry.forEach(async (pais) => {
         let country = await Country.findOne({
             where: { id: pais },
         });
@@ -23,6 +21,12 @@ router.post("/", async (req, res) => {
     });
 
     res.send(newActivity);
+});
+
+router.get("/", async (req, res) => {
+    var activities = await Activity.findAll();
+
+    res.json(activities);
 });
 
 module.exports = router;

@@ -24,20 +24,15 @@ router.get("/", async (req, res) => {
     return Country.findAll().then((countries) => res.json(countries));
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", async (req, res) => {
     const { id } = req.params;
     console.log(id); // Me llegan los paises
     if (id) {
-        Country.findOne({
+        let foundCountry = await Country.findOne({
             where: { id: { [Op.iLike]: `%${id}%` } },
             include: [Activity],
-        })
-            .then((id) => {
-                res.send(id);
-            })
-            .catch((err) => {
-                return res.send({ err: err });
-            });
+        });
+        return res.json(foundCountry);
     }
 });
 
