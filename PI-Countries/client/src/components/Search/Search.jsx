@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getCountriesByName } from "../../redux/actions/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { getCountriesByName, getRegions } from "../../redux/actions/actions";
 import "./search.css";
 
 const Search = () => {
     const dispatch = useDispatch();
+    const region = useSelector((state) => state.region);
     const [input, setInput] = useState({ country: "" });
 
     useEffect(() => {
@@ -19,8 +20,11 @@ const Search = () => {
         e.preventDefault();
         if (input.country) {
             dispatch(getCountriesByName(input.country));
+        }
+        if (region.length > 0) {
+            dispatch(getRegions(region));
         } else {
-            alert("The name of the countrie is invalid ");
+            alert("The name of the countrie is invalid");
         }
     };
 

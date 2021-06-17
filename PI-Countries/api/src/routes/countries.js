@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const router = Router();
 const { Country, Activity } = require("../db");
-const axios = require("axios").default;
 const { Op } = require("sequelize");
 
 router.get("/", async (req, res) => {

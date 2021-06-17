@@ -1,5 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import "./styles.css";
 
 const Card = ({ country, index }) => {
     const history = useHistory();
@@ -16,8 +17,7 @@ const Card = ({ country, index }) => {
                 src={country.flag}
                 alt={country.name}
             />
-            <p>Continent: {country.region}</p>
-            <p>Population: {country.population}</p>
+            <p className="region">{country.region}</p>
         </div>
     );
 };

@@ -1,7 +1,8 @@
 const initialState = {
     countries: [],
     countriesId: {},
-    region: [],
+    region: [], // Te VAS A ROMPER PEDAZO DE SORETE
+    reset: [],
     type: "all",
 };
 
@@ -11,6 +12,12 @@ const countries = (state = initialState, action) => {
             return {
                 ...state,
                 countries: action.payload,
+                reset: action.payload,
+            };
+        case "RESET":
+            return {
+                ...state,
+                countries: state.reset,
             };
 
         case "GET_COUNTRIES_ID":
@@ -28,8 +35,8 @@ const countries = (state = initialState, action) => {
         case "GET_REGIONS":
             return {
                 ...state,
-                region: action.payload,
-                type: "region",
+                countries: action.payload, // ACA TENIA REGIONS
+                // type: "region", TE VAS A ROMPER VOS TAMBIEN
             };
 
         case "SORT_ALPHABETICALLY":

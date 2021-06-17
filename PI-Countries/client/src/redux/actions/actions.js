@@ -99,6 +99,7 @@ export const sortZA = (array) => async (dispatch) => {
         });
     }
 };
+
 export const population = (array) => async (dispatch) => {
     if (!array) {
         try {
@@ -177,4 +178,8 @@ export const getRegions = (reg) => async (dispatch) => {
     } catch (err) {
         console.log(err);
     }
+};
+
+export const resetAll = () => (dispatch) => {
+    dispatch({ type: "RESET", payload: "ALL" });
 };

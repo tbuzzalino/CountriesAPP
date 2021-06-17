@@ -8,56 +8,39 @@ import {
     populationLower,
     getRegions,
     getAllCountries,
+    resetAll,
 } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Nav = () => {
     const dispatch = useDispatch();
     const region = useSelector((state) => state.region);
+    const countries = useSelector((state) => state.countries);
     const handleClickOriginal = (e) => dispatch(getAllCountries());
-    // const [order, setOrd] = useState('')
-    // const [reg, setReg] = useState('')
-    // const handleRegionChange = (e) => {
-    //     let region = e.target.value
-    //     let ord = document.getElementById('sort')
-    //     ord.selectIndex = 0
-    //     setOrd(null);
-    //     setReg(region === 'Region' ? null : region)
-    // }
 
     const handleClick = (e) => {
-        if (region.length > 0) {
-            dispatch(sort(region));
-        } else {
-            dispatch(sort());
-        }
+        dispatch(sort(countries));
     };
 
     const handleClickZ = (e) => {
-        if (region.length > 0) {
-            dispatch(sortZA(region));
-        } else {
-            dispatch(sortZA());
-        }
+        dispatch(sortZA(countries));
     };
 
     const handleClickPopulation = (e) => {
-        if (region.length > 0) {
-            dispatch(population(region));
-        } else {
-            dispatch(population());
-        }
+        dispatch(population(countries));
     };
 
     const handleClickPopulationLower = (e) => {
-        if (region.length > 0) {
-            dispatch(populationLower(region));
-        } else {
-            dispatch(populationLower());
-        }
+        dispatch(populationLower(countries));
     };
 
-    const handleRegion = (e) => dispatch(getRegions(e.target.value));
+    const handleRegion = (e) => {
+        if (e.target.value === "ALL") {
+            dispatch(resetAll());
+        } else {
+            dispatch(getRegions(e.target.value));
+        }
+    };
 
     return (
         <NavBar>
@@ -66,9 +49,7 @@ const Nav = () => {
             </div>
             <Search />
             <select className="sort" placeholder="A-Z">
-                <option onClick={(e) => handleClickOriginal(e)}>
-                    Order alphabetically
-                </option>
+                <option onClick={(e) => handleClickOriginal(e)}>Order</option>
                 <option onClick={(e) => handleClick(e)}>A-Z</option>
                 <option onClick={(e) => handleClickZ(e)}>Z-A</option>
                 <option onClick={(e) => handleClickPopulation(e)}>
@@ -79,7 +60,7 @@ const Nav = () => {
                 </option>
             </select>
             <select className="region" onChange={(e) => handleRegion(e)}>
-                <option value="all">World Regions</option>
+                <option value="ALL">World Regions</option>
                 <option value="Europe">Europe</option>
                 <option value="Americas">Americas</option>
                 <option value="Asia">Asia</option>

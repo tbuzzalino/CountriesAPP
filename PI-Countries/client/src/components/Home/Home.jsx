@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllCountries } from "../../redux/actions/actions";
 import Card from "../Card/Card";
 import { StyledDiv } from "./styled";
+import Pagination from "../Pagination/Pagination";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -10,7 +11,14 @@ const Home = () => {
     const regionc = useSelector((state) => state.region);
     const typeR = useSelector((state) => state.type);
 
-    // const [cPage, setcPage] = useState([currentItems]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const cardsPerPage = 10;
+    const indexOfLastCard = currentPage * cardsPerPage;
+    const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+    const currentCountries = countries.slice(indexOfFirstCard, indexOfLastCard);
+    const currentRegions = regionc.slice(indexOfFirstCard, indexOfLastCard);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     useEffect(() => {
         dispatch(getAllCountries());
@@ -20,12 +28,13 @@ const Home = () => {
 
     return (
         <StyledDiv>
-            {regionc && regionc.length !== 0
-                ? regionc.map((country, index) => {
+            <Pagination cardsPerPage={cardsPerPage} paginate={paginate} />
+            {currentRegions && currentRegions.length !== 0
+                ? currentRegions.map((country, index) => {
                       return <Card country={country} index={index} />;
                   })
-                : countries &&
-                  countries.map((country, index) => {
+                : currentCountries &&
+                  currentCountries.map((country, index) => {
                       return <Card country={country} index={index} />;
                   })}
         </StyledDiv>
