@@ -15,7 +15,7 @@ router.get("/", async (req, res) => {
             });
             res.json(searchCountries);
         } catch (err) {
-            res.status(404).send("Name error");
+            res.status(404).send("The name was not found.");
         }
     }
     if (region) {
@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
             });
             res.json(searchRegion);
         } catch (err) {
-            res.status(404).send("Region error");
+            res.status(404).send("The region was not found.");
         }
     }
 
@@ -37,11 +37,15 @@ router.get("/:id", async (req, res) => {
     const { id } = req.params;
     console.log(id); // Me llegan los paises
     if (id) {
-        let foundCountry = await Country.findOne({
-            where: { id: { [Op.iLike]: `%${id}%` } },
-            include: [Activity],
-        });
-        res.json(foundCountry);
+        try {
+            let foundCountry = await Country.findOne({
+                where: { id: { [Op.iLike]: `%${id}%` } },
+                include: [Activity],
+            });
+            res.json(foundCountry);
+        } catch (err) {
+            res.status(404).send("The id was not found.");
+        }
     }
 });
 
