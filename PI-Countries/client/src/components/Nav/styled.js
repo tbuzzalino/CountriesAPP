@@ -18,6 +18,11 @@ export const NavBar = styled.nav`
         margin: 15px;
         font-size: 30px;
         font-weight: bold;
+        span {
+            font-weight: 300;
+            font-size: 1.3 rem;
+            text-align: center;
+        }
     }
     .sort {
         padding: 5px;

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { getCountriesById } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { StyledDiv } from "./styled";
+import "./styles.css";
 
 const CountriesDetails = ({ index }) => {
     const dispatch = useDispatch();
@@ -15,7 +15,8 @@ const CountriesDetails = ({ index }) => {
     console.log(countriesId);
 
     return (
-        <StyledDiv key={index} className="card">
+        <div key={index} className="card">
+            <button></button>
             <img
                 className="flag"
                 src={countriesId.flag}
@@ -40,7 +41,7 @@ const CountriesDetails = ({ index }) => {
                         </div>
                     ))}
             </p>
-        </StyledDiv>
+        </div>
     );
 };
 

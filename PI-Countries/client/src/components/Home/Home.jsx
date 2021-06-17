@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCountries } from "../../redux/actions/actions";
 import Card from "../Card/Card";
@@ -10,11 +10,14 @@ const Home = () => {
     const regionc = useSelector((state) => state.region);
     const typeR = useSelector((state) => state.type);
 
+    // const [cPage, setcPage] = useState([currentItems]);
+
     useEffect(() => {
         dispatch(getAllCountries());
     }, [dispatch]);
-    console.log(regionc);
+    console.log(countries);
     console.log(typeR);
+
     return (
         <StyledDiv>
             {regionc && regionc.length !== 0

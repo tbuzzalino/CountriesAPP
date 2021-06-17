@@ -31,12 +31,29 @@ export const getCountriesByName = (name) => async (dispatch) => {
     }
 };
 
-export const sort = () => async (dispatch) => {
-    try {
-        const response = await axios.get("http://localhost:3001/countries");
+export const sort = (array) => async (dispatch) => {
+    if (!array) {
+        try {
+            const response = await axios.get("http://localhost:3001/countries");
+            dispatch({
+                type: "SORT_ALPHABETICALLY",
+                payload: response.data.sort((a, b) => {
+                    if (a.name > b.name) {
+                        return 1;
+                    }
+                    if (a.name < b.name) {
+                        return -1;
+                    }
+                    return 0;
+                }),
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    } else {
         dispatch({
             type: "SORT_ALPHABETICALLY",
-            payload: response.data.sort((a, b) => {
+            payload: array.sort((a, b) => {
                 if (a.name > b.name) {
                     return 1;
                 }
@@ -46,16 +63,31 @@ export const sort = () => async (dispatch) => {
                 return 0;
             }),
         });
-    } catch (err) {
-        console.log(err);
     }
 };
-export const sortZA = () => async (dispatch) => {
-    try {
-        const response = await axios.get("http://localhost:3001/countries");
+export const sortZA = (array) => async (dispatch) => {
+    if (!array) {
+        try {
+            const response = await axios.get("http://localhost:3001/countries");
+            dispatch({
+                type: "SORT_ALPHABETICALLY_ZA",
+                payload: response.data.sort((a, b) => {
+                    if (a.name < b.name) {
+                        return 1;
+                    }
+                    if (a.name > b.name) {
+                        return -1;
+                    }
+                    return 0;
+                }),
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    } else {
         dispatch({
             type: "SORT_ALPHABETICALLY_ZA",
-            payload: response.data.sort((a, b) => {
+            payload: array.sort((a, b) => {
                 if (a.name < b.name) {
                     return 1;
                 }
@@ -65,16 +97,31 @@ export const sortZA = () => async (dispatch) => {
                 return 0;
             }),
         });
-    } catch (err) {
-        console.log(err);
     }
 };
-export const population = () => async (dispatch) => {
-    try {
-        const response = await axios.get("http://localhost:3001/countries");
+export const population = (array) => async (dispatch) => {
+    if (!array) {
+        try {
+            const response = await axios.get("http://localhost:3001/countries");
+            dispatch({
+                type: "POPULATION",
+                payload: response.data.sort((a, b) => {
+                    if (a.population < b.population) {
+                        return 1;
+                    }
+                    if (a.population > b.population) {
+                        return -1;
+                    }
+                    return 0;
+                }),
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    } else {
         dispatch({
             type: "POPULATION",
-            payload: response.data.sort((a, b) => {
+            payload: array.sort((a, b) => {
                 if (a.population < b.population) {
                     return 1;
                 }
@@ -84,16 +131,31 @@ export const population = () => async (dispatch) => {
                 return 0;
             }),
         });
-    } catch (err) {
-        console.log(err);
     }
 };
-export const populationLower = () => async (dispatch) => {
-    try {
-        const response = await axios.get("http://localhost:3001/countries");
+export const populationLower = (array) => async (dispatch) => {
+    if (!array) {
+        try {
+            const response = await axios.get("http://localhost:3001/countries");
+            dispatch({
+                type: "POPULATION_LOWER",
+                payload: response.data.sort((a, b) => {
+                    if (a.population > b.population) {
+                        return 1;
+                    }
+                    if (a.population < b.population) {
+                        return -1;
+                    }
+                    return 0;
+                }),
+            });
+        } catch (err) {
+            console.log(err);
+        }
+    } else {
         dispatch({
             type: "POPULATION_LOWER",
-            payload: response.data.sort((a, b) => {
+            payload: array.sort((a, b) => {
                 if (a.population > b.population) {
                     return 1;
                 }
@@ -103,8 +165,6 @@ export const populationLower = () => async (dispatch) => {
                 return 0;
             }),
         });
-    } catch (err) {
-        console.log(err);
     }
 };
 

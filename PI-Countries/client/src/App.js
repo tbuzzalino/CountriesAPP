@@ -11,6 +11,7 @@ function App() {
             <Route path="/home" component={NavBar} />
             <Route path="/home" component={Home} />
             <Route path="/countries/:idCountry" component={CountriesDetails} />
+            {/* <Route path="/home" component={Pagination} /> */}
         </>
     );
 }

@@ -6,22 +6,31 @@ const { Op } = require("sequelize");
 
 router.get("/", async (req, res) => {
     const { name, region } = req.query;
+
     if (name) {
-        let searchCountries = await Country.findAll({
-            where: { name: { [Op.iLike]: `%${name}%` } },
-            include: [Activity],
-        });
-        return res.json(searchCountries);
+        try {
+            let searchCountries = await Country.findAll({
+                where: { name: { [Op.iLike]: `%${name}%` } },
+                include: [Activity],
+            });
+            res.json(searchCountries);
+        } catch (err) {
+            res.status(404).send("Name error");
+        }
     }
     if (region) {
-        let searchRegion = await Country.findAll({
-            where: { region: { [Op.iLike]: `%${region}%` } },
-            include: [Activity],
-        });
-        return res.json(searchRegion);
+        try {
+            let searchRegion = await Country.findAll({
+                where: { region: { [Op.iLike]: `%${region}%` } },
+                include: [Activity],
+            });
+            res.json(searchRegion);
+        } catch (err) {
+            res.status(404).send("Region error");
+        }
     }
 
-    return Country.findAll().then((countries) => res.json(countries));
+    Country.findAll().then((countries) => res.json(countries));
 });
 
 router.get("/:id", async (req, res) => {
@@ -32,7 +41,7 @@ router.get("/:id", async (req, res) => {
             where: { id: { [Op.iLike]: `%${id}%` } },
             include: [Activity],
         });
-        return res.json(foundCountry);
+        res.json(foundCountry);
     }
 });
 
