@@ -6,20 +6,20 @@ import "./search.css";
 const Search = () => {
     const dispatch = useDispatch();
     const region = useSelector((state) => state.region);
-    const [input, setInput] = useState({ country: "" });
+    const [input, setInput] = useState("");
 
     useEffect(() => {
-        dispatch(getCountriesByName(input.country));
-    }, [dispatch, input.country]);
+        dispatch(getCountriesByName(input));
+    }, [dispatch, input]);
 
     const handleChange = (e) => {
-        setInput({ country: e.target.value });
+        setInput(e.target.value);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (input.country) {
-            dispatch(getCountriesByName(input.country));
+        if (input) {
+            dispatch(getCountriesByName(input));
         }
         if (region.length > 0) {
             dispatch(getRegions(region));
@@ -35,14 +35,13 @@ const Search = () => {
                     className="input"
                     type="text"
                     placeholder="Search Country..."
-                    value={input.country}
+                    value={input}
                     name="input"
                     onChange={(e) => handleChange(e)}
                 />
-
-                {/* <button type="submit" className="button"></button> */}
             </form>
         </div>
     );
 };
+
 export default Search;

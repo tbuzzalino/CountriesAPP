@@ -23,8 +23,12 @@ const Home = () => {
     useEffect(() => {
         dispatch(getAllCountries());
     }, [dispatch]);
-    console.log(countries);
-    console.log(typeR);
+
+    useEffect(() => {
+        if (typeR !== "all") {
+            setCurrentPage(1);
+        }
+    }, [dispatch, typeR]);
 
     return (
         <StyledDiv>
