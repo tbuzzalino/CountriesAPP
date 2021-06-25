@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import "./styles.css";
 
 const Card = ({ country, index }) => {
     const history = useHistory();

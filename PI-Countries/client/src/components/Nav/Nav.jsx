@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { NavBar } from "./styled";
 import Search from "../Search/Search";
 import {
@@ -9,14 +9,25 @@ import {
     getRegions,
     getAllCountries,
     resetAll,
+    getActivities,
+    filteredActivities,
 } from "../../redux/actions/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const Nav = () => {
     const dispatch = useDispatch();
-    const region = useSelector((state) => state.region);
+    const history = useHistory();
     const countries = useSelector((state) => state.countries);
+    const activities = useSelector((state) => state.activities);
+
     const handleClickOriginal = (e) => dispatch(getAllCountries());
+
+    useEffect(() => {
+        dispatch(getActivities());
+    }, [dispatch]);
+
+    console.log(activities);
 
     const handleClick = (e) => {
         dispatch(sort(countries));
@@ -40,6 +51,10 @@ const Nav = () => {
         } else {
             dispatch(getRegions(e.target.value));
         }
+    };
+
+    const handleActivities = (e) => {
+        dispatch(filteredActivities(e.target.value));
     };
 
     return (
@@ -66,6 +81,26 @@ const Nav = () => {
                 <option value="Asia">Asia</option>
                 <option value="Oceania">Oceania</option>
                 <option value="Africa">Africa</option>
+                <option value="Polar">Antartida</option>
+            </select>
+            <button className="activity" onClick={() => history.push(`/form`)}>
+                Create New Activity
+            </button>
+            <select
+                className="activities"
+                onChange={(e) => handleActivities(e)}
+            >
+                <option onClick={(e) => handleClickOriginal(e)}>
+                    Find Activities
+                </option>
+                {activities &&
+                    activities.map((el, index) => {
+                        return (
+                            <option key={index} value={el.name}>
+                                {el.name}
+                            </option>
+                        );
+                    })}
             </select>
         </NavBar>
     );

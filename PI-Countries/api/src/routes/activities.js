@@ -4,29 +4,37 @@ const { Activity, Country } = require("../db");
 
 router.post("/", async (req, res) => {
     let { name, difficulty, duration, season, idCountry } = req.body;
-    let newActivity = await Activity.create({
-        name: name,
-        difficulty: difficulty,
-        duration: duration,
-        season: season,
-    });
-
-    // console.log(newActivity)
-    // Esto me agrega a la tabla intermedia
-    idCountry.forEach(async (pais) => {
-        let country = await Country.findOne({
-            where: { id: pais },
+    try {
+        let newActivity = await Activity.create({
+            name: name,
+            difficulty: difficulty,
+            duration: duration,
+            season: season,
         });
-        await newActivity.addCountry(country);
-    });
 
-    res.send(newActivity);
+        // console.log(newActivity)
+        // Esto me agrega a la tabla intermedia
+        idCountry.forEach(async (pais) => {
+            let country = await Country.findOne({
+                where: { id: pais },
+            });
+            await newActivity.addCountry(country);
+        });
+
+        return res.send(newActivity);
+    } catch (err) {
+        return res.status(400).send("The activity was not created");
+    }
 });
 
 router.get("/", async (req, res) => {
-    var activities = await Activity.findAll();
+    try {
+        let activities = await Activity.findAll();
 
-    res.json(activities);
+        return res.json(activities);
+    } catch (err) {
+        return res.status(404).send("The activities was not found");
+    }
 });
 
 module.exports = router;

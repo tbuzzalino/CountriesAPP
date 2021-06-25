@@ -4,6 +4,23 @@ const initialState = {
     region: [], // Te VAS A ROMPER PEDAZO DE SORETE
     reset: [],
     type: "all",
+    activities: [],
+    activitiesByCountry: [],
+};
+
+const filterByActivity = (activity, countries) => {
+    let filtered = countries.filter((c) => {
+        if (c.Activities) {
+            for (let i = 0; i < c.Activities.length; i++) {
+                if (c.Activities[i].name === activity) {
+                    return true;
+                }
+            }
+        } else {
+            return false;
+        }
+    });
+    return filtered;
 };
 
 const countries = (state = initialState, action) => {
@@ -14,10 +31,13 @@ const countries = (state = initialState, action) => {
                 countries: action.payload,
                 reset: action.payload,
             };
+
         case "RESET":
             return {
                 ...state,
                 countries: state.reset,
+                countriesId: {}, // Me vacia los paises que tenga por ID
+                type: "all",
             };
 
         case "GET_COUNTRIES_ID":
@@ -35,8 +55,9 @@ const countries = (state = initialState, action) => {
         case "GET_REGIONS":
             return {
                 ...state,
-                countries: action.payload, // ACA TENIA REGIONS
-                // type: "region", TE VAS A ROMPER VOS TAMBIEN
+                countries: action.payload,
+                // ACA TENIA REGIONS TE ROMPISTE DEVUELTA PERO TE VOLVES COGIDO
+                type: "region",
             };
 
         case "SORT_ALPHABETICALLY":
@@ -65,6 +86,28 @@ const countries = (state = initialState, action) => {
                 ...state,
                 countries: action.payload,
                 type: "LOWER",
+            };
+
+        case "ACTIVITIES":
+            return {
+                ...state,
+                activities: action.payload,
+            };
+
+        case "POST_ACTIVITIES":
+            return {
+                ...state,
+                activities: action.payload,
+            };
+
+        case "ACTIVITIES_BY_COUNTRY":
+            let newCountry = state.reset;
+            let filtered = filterByActivity(action.payload, newCountry);
+
+            return {
+                ...state,
+                countries: filtered,
+                type: "filtered",
             };
 
         default:

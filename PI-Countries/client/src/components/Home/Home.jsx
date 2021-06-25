@@ -14,11 +14,14 @@ const Home = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const cardsPerPage = 10;
     const indexOfLastCard = currentPage * cardsPerPage;
+    // indice del ultimo elemento de cada pagina
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
+    // indice del primer elemento de cada pagina
     const currentCountries = countries.slice(indexOfFirstCard, indexOfLastCard);
     const currentRegions = regionc.slice(indexOfFirstCard, indexOfLastCard);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
+    // Toma el numero que me devuelve la cuenta.
 
     useEffect(() => {
         dispatch(getAllCountries());
@@ -28,19 +31,23 @@ const Home = () => {
         if (typeR !== "all") {
             setCurrentPage(1);
         }
-    }, [dispatch, typeR]);
+    }, [dispatch, typeR, countries]);
 
     return (
         <StyledDiv>
-            <Pagination cardsPerPage={cardsPerPage} paginate={paginate} />
-            {currentRegions && currentRegions.length !== 0
-                ? currentRegions.map((country, index) => {
-                      return <Card country={country} index={index} />;
-                  })
-                : currentCountries &&
-                  currentCountries.map((country, index) => {
-                      return <Card country={country} index={index} />;
-                  })}
+            <div className="pag-styles">
+                <Pagination cardsPerPage={cardsPerPage} paginate={paginate} />
+            </div>
+            <div className="cards">
+                {currentRegions && currentRegions.length !== 0
+                    ? currentRegions.map((country, index) => {
+                          return <Card country={country} key={index} />;
+                      })
+                    : currentCountries &&
+                      currentCountries.map((country, index) => {
+                          return <Card country={country} key={index} />;
+                      })}
+            </div>
         </StyledDiv>
     );
 };

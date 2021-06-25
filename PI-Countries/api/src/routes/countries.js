@@ -4,7 +4,19 @@ const { Country, Activity } = require("../db");
 const { Op } = require("sequelize");
 
 router.get("/", async (req, res) => {
-    const { name, region } = req.query;
+    const { name, region, activities } = req.query;
+
+    if (activities) {
+        try {
+            let searchActivity = await Country.findAll({
+                where: { activities: { [Op.iLike]: `%${activities}%` } },
+                include: [Activity],
+            });
+            return res.json(searchActivity);
+        } catch (err) {
+            return res.status(404).send("The activity was not found.");
+        }
+    }
 
     if (name) {
         try {
@@ -12,24 +24,27 @@ router.get("/", async (req, res) => {
                 where: { name: { [Op.iLike]: `%${name}%` } },
                 include: [Activity],
             });
-            res.json(searchCountries);
+            return res.json(searchCountries);
         } catch (err) {
-            res.status(404).send("The name was not found.");
+            return res.status(404).send("The name was not found.");
         }
     }
+
     if (region) {
         try {
             let searchRegion = await Country.findAll({
                 where: { region: { [Op.iLike]: `%${region}%` } },
                 include: [Activity],
             });
-            res.json(searchRegion);
+            return res.json(searchRegion);
         } catch (err) {
-            res.status(404).send("The region was not found.");
+            return res.status(404).send("The region was not found.");
         }
     }
 
-    Country.findAll().then((countries) => res.json(countries));
+    Country.findAll({ include: [Activity] }).then((countries) =>
+        res.status(200).json(countries)
+    );
 });
 
 router.get("/:id", async (req, res) => {

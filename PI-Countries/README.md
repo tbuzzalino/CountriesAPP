@@ -98,7 +98,7 @@ Se debe desarrollar una aplicación de React/Redux que contenga las siguientes p
     -   Continente
 -   [ ] Botones/Opciones para filtrar por continente y por tipo de actividad turística
 -   [ x ] Botones/Opciones para ordenar tanto ascendentemente como descendentemente los países por orden alfabético y por cantidad de población
--   [ ] Paginado para ir buscando y mostrando los siguientes paises
+-   [ x ] Paginado para ir buscando y mostrando los siguientes paises
 
 **Ruta de detalle de país**: debe contener
 

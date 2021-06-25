@@ -33,4 +33,12 @@ export const NavBar = styled.nav`
         padding: 5px;
         margin-right: 10px;
     }
+    .activity {
+        padding: 5px;
+        margin-right: 10px;
+    }
+    .activities {
+        padding: 5px;
+        margin-right: 10px;
+    }
 `;
