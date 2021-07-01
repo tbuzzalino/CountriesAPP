@@ -21,10 +21,10 @@ const server = require("./src/app.js");
 const { conn, Country } = require("./src/db.js");
 const { ALL_COUNTRIES } = require("./utils/urls");
 const axios = require("axios").default;
-
+const port = process.env.PORT || 5000;
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-    server.listen(3001, () => {
+    server.listen(port, () => {
         console.log("%s at 3001", "The countries has been loaded succesfully");
         axios.get(ALL_COUNTRIES).then(
             (countrie) =>

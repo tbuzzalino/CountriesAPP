@@ -51,7 +51,10 @@ const Form = () => {
             alert("Complete all the fields");
         } else {
             try {
-                await axios.post(`http://localhost:3001/activities`, input);
+                await axios.post(
+                    `https://countries-a.herokuapp.com/activities`,
+                    input
+                );
                 alert("Activity created.");
             } catch (err) {
                 console.log(err);
@@ -172,7 +175,6 @@ const Form = () => {
                                 return (
                                     <option key={index} value={el.id}>
                                         {el.name} {el.id}
-                                        {el.flag}
                                     </option>
                                 );
                             })}
@@ -188,7 +190,7 @@ const Form = () => {
                     Create Activity
                 </button>
                 <button className="btn" onClick={() => handleClick()}>
-                    Back to Home
+                    Back to Home 🏠
                 </button>
             </StyledDiv>
         </form>

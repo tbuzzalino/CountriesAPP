@@ -2,7 +2,9 @@ import axios from "axios";
 
 export const getAllCountries = () => async (dispatch) => {
     try {
-        const response = await axios.get("http://localhost:3001/countries");
+        const response = await axios.get(
+            "https://countries-a.herokuapp.com/countries"
+        );
         dispatch({ type: "GET_COUNTRIES", payload: response.data });
     } catch (err) {
         console.log(err);
@@ -12,7 +14,7 @@ export const getAllCountries = () => async (dispatch) => {
 export const getCountriesById = (id) => async (dispatch) => {
     try {
         const response = await axios.get(
-            `http://localhost:3001/countries/${id}`
+            `https://countries-a.herokuapp.com/countries/${id}`
         );
         dispatch({ type: "GET_COUNTRIES_ID", payload: response.data });
     } catch (err) {
@@ -23,7 +25,7 @@ export const getCountriesById = (id) => async (dispatch) => {
 export const getCountriesByName = (name) => async (dispatch) => {
     try {
         const response = await axios.get(
-            `http://localhost:3001/countries?name=${name}`
+            `https://countries-a.herokuapp.com/countries?name=${name}`
         );
         dispatch({ type: "GET_COUNTRIES_NAME", payload: response.data });
         console.log(response.data);
@@ -95,7 +97,7 @@ export const populationLower = (array) => async (dispatch) => {
 export const getRegions = (reg) => async (dispatch) => {
     try {
         const response = await axios.get(
-            `http://localhost:3001/countries?region=${reg}`
+            `https://countries-a.herokuapp.com/countries?region=${reg}`
         );
         dispatch({ type: "GET_REGIONS", payload: response.data });
     } catch (err) {
@@ -109,7 +111,9 @@ export const resetAll = () => (dispatch) => {
 
 export const getActivities = () => async (dispatch) => {
     try {
-        const response = await axios.get(`http://localhost:3001/activities`);
+        const response = await axios.get(
+            `https://countries-a.herokuapp.com/activities`
+        );
         dispatch({ type: "ACTIVITIES", payload: response.data });
     } catch (err) {
         console.log(err);

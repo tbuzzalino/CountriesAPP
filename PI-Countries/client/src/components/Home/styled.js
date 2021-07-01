@@ -7,6 +7,7 @@ export const StyledDiv = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-bottom: 25px;
     .cards {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -59,6 +60,12 @@ export const StyledDiv = styled.div`
             height: 150px;
             margin: auto;
             text-align: center;
+            position: relative;
+
+            transition: transform 0.2s ease-in-out;
+            :hover {
+                transform: scale(1.25);
+            }
         }
     }
 `;

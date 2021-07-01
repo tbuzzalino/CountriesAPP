@@ -7,7 +7,6 @@ export const NavBar = styled.nav`
     /* flex-wrap: wrap; */
     background: #1b2a41;
     padding-bottom: 20px;
-    margin-bottom: 25px;
     color: white;
 
     .Menu {
@@ -24,19 +23,23 @@ export const NavBar = styled.nav`
             text-align: center;
         }
     }
+
     .sort {
         padding: 5px;
         margin-right: 10px;
         width: 6%;
     }
+
     .region {
         padding: 5px;
         margin-right: 10px;
     }
+
     .activity {
         padding: 5px;
         margin-right: 10px;
     }
+
     .activities {
         padding: 5px;
         margin-right: 10px;

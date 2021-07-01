@@ -12,7 +12,7 @@ const Home = () => {
     const typeR = useSelector((state) => state.type);
 
     const [currentPage, setCurrentPage] = useState(1);
-    const cardsPerPage = 10;
+    const cardsPerPage = 12;
     const indexOfLastCard = currentPage * cardsPerPage;
     // indice del ultimo elemento de cada pagina
     const indexOfFirstCard = indexOfLastCard - cardsPerPage;
