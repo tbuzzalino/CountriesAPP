@@ -171,13 +171,21 @@ const Form = () => {
                             Select a country...
                         </option>
                         {countries &&
-                            countries.map((el, index) => {
-                                return (
-                                    <option key={index} value={el.id}>
-                                        {el.name} {el.id}
-                                    </option>
-                                );
-                            })}
+                            countries
+                                .sort((a, b) => {
+                                    if (a.name > b.name) {
+                                        return 1;
+                                    } else {
+                                        return -1;
+                                    }
+                                })
+                                .map((el, index) => {
+                                    return (
+                                        <option key={index} value={el.id}>
+                                            {el.name} {el.id}
+                                        </option>
+                                    );
+                                })}
                     </select>
                 </div>
 

@@ -39,11 +39,11 @@ const CountriesDetails = ({ index }) => {
                 {countriesId.Activities &&
                     countriesId.Activities.map((c) => (
                         <div>
-                            <h4>Activities </h4>
-                            <p>Activity Name : {c.name} </p>
-                            <p>Difficulty : {c.difficulty}</p>
+                            <h2>Activities </h2>
+                            <p>Activity Name: {c.name} </p>
+                            <p>Difficulty: {c.difficulty}</p>
                             <p>Duration: {c.duration} hours. </p>
-                            <p>Season : {c.season}</p>
+                            <p>Season: {c.season}</p>
                         </div>
                     ))}
             </p>

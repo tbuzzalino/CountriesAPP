@@ -81,7 +81,7 @@ const Nav = () => {
                 <option value="Asia">Asia</option>
                 <option value="Oceania">Oceania</option>
                 <option value="Africa">Africa</option>
-                <option value="Polar">Antartida</option>
+                <option value="Polar">Polar</option>
             </select>
             <button className="activity" onClick={() => history.push(`/form`)}>
                 Create New Activity

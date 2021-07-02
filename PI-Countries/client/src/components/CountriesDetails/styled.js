@@ -31,7 +31,7 @@ export const StyledDiv = styled.div`
     }
     p {
         text-align: center;
-        font-weight: 300;
+        font-weight: 400;
     }
     div {
         text-align: center;
