@@ -49,7 +49,7 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
     const { id } = req.params;
-    console.log(id); // Me llegan los paises
+    console.log(id);
     if (id) {
         try {
             let foundCountry = await Country.findOne({

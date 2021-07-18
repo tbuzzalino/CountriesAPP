@@ -42,7 +42,7 @@ const CountriesDetails = ({ index }) => {
                             <h2>Activities </h2>
                             <p>Activity Name: {c.name} </p>
                             <p>Difficulty: {c.difficulty}</p>
-                            <p>Duration: {c.duration} hours. </p>
+                            <p>Duration: {c.duration} hours.</p>
                             <p>Season: {c.season}</p>
                         </div>
                     ))}
