@@ -3,9 +3,10 @@ const initialState = {
     countriesId: {},
     region: [], // Te VAS A ROMPER PEDAZO DE SORETE
     reset: [],
-    type: "all",
+    type: 'all',
     activities: [],
     activitiesByCountry: [],
+    loading: false,
 };
 
 const filterByActivity = (activity, countries) => {
@@ -25,89 +26,97 @@ const filterByActivity = (activity, countries) => {
 
 const countries = (state = initialState, action) => {
     switch (action.type) {
-        case "GET_COUNTRIES":
+        case 'GET_COUNTRIES':
             return {
                 ...state,
                 countries: action.payload,
                 reset: action.payload,
+                loading: false,
             };
 
-        case "RESET":
+        case 'LOADING': {
+            return {
+                ...state,
+                loading: true,
+            };
+        }
+
+        case 'RESET':
             return {
                 ...state,
                 countries: state.reset,
                 countriesId: {}, // Me vacia los paises que tenga por ID
-                type: "all",
+                type: 'all',
             };
 
-        case "GET_COUNTRIES_ID":
+        case 'GET_COUNTRIES_ID':
             return {
                 ...state,
                 countriesId: action.payload,
             };
 
-        case "GET_COUNTRIES_NAME":
+        case 'GET_COUNTRIES_NAME':
             return {
                 ...state,
                 countries: action.payload,
             };
 
-        case "GET_REGIONS":
+        case 'GET_REGIONS':
             return {
                 ...state,
                 countries: action.payload,
-                // ACA TENIA REGIONS TE ROMPISTE DEVUELTA PERO TE VOLVES COGIDO
-                type: "region",
+                type: 'region',
+                loading: false,
             };
 
-        case "SORT_ALPHABETICALLY":
+        case 'SORT_ALPHABETICALLY':
             return {
                 ...state,
                 countries: action.payload,
-                type: "A-Z",
+                type: 'A-Z',
             };
 
-        case "SORT_ALPHABETICALLY_ZA":
+        case 'SORT_ALPHABETICALLY_ZA':
             return {
                 ...state,
                 countries: action.payload,
-                type: "Z-A",
+                type: 'Z-A',
             };
 
-        case "POPULATION":
+        case 'POPULATION':
             return {
                 ...state,
                 countries: action.payload,
-                type: "UP",
+                type: 'UP',
             };
 
-        case "POPULATION_LOWER":
+        case 'POPULATION_LOWER':
             return {
                 ...state,
                 countries: action.payload,
-                type: "LOWER",
+                type: 'LOWER',
             };
 
-        case "ACTIVITIES":
+        case 'ACTIVITIES':
             return {
                 ...state,
                 activities: action.payload,
             };
 
-        case "POST_ACTIVITIES":
+        case 'POST_ACTIVITIES':
             return {
                 ...state,
                 activities: action.payload,
             };
 
-        case "ACTIVITIES_BY_COUNTRY":
+        case 'ACTIVITIES_BY_COUNTRY':
             let newCountry = state.reset;
             let filtered = filterByActivity(action.payload, newCountry);
 
             return {
                 ...state,
                 countries: filtered,
-                type: "filtered",
+                type: 'filtered',
             };
 
         default:

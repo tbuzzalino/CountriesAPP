@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const getAllCountries = () => async (dispatch) => {
+    dispatch({ type: 'LOADING' });
     try {
         const response = await axios.get(
             'https://countries-a.herokuapp.com/countries'
@@ -94,6 +95,7 @@ export const populationLower = (array) => async (dispatch) => {
 };
 
 export const getRegions = (reg) => async (dispatch) => {
+    dispatch({ type: 'LOADING' });
     try {
         const response = await axios.get(
             `https://countries-a.herokuapp.com/countries?region=${reg}`

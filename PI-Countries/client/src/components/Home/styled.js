@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const StyledDiv = styled.div`
     width: 90%;
@@ -8,6 +8,13 @@ export const StyledDiv = styled.div`
     flex-direction: column;
     justify-content: center;
     margin-bottom: 25px;
+
+    .loading {
+        margin-top: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .cards {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
